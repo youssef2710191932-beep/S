@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لـ رحومتي ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #ff6b81;
+            --accent: #ff758c;
+            --bg-dark: #070308;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #1f0b24 0%, var(--bg-dark) 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* خلفية نجوم وقلوب هادئة */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* الكارت الرئيسي */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 92%;
+            max-width: 420px;
+            background: var(--glass);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 30px 22px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff758c, #ffb199);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #b2bec3;
+            margin-bottom: 25px;
+        }
+
+        /* عداد الوقت الحي */
+        .counter-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 117, 140, 0.2);
+            border-radius: 20px;
+            padding: 18px 10px;
+            margin-bottom: 25px;
+        }
+
+        .counter-title {
+            font-size: 0.85rem;
+            color: #ffb199;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 8px 4px;
+        }
+
+        .time-num {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .time-label {
+            font-size: 0.65rem;
+            color: #aaa;
+            margin-top: 2px;
+        }
+
+        /* صندوق الأسباب الرومانسية */
+        .reason-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            padding: 18px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #f1f2f6;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .romantic-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 15px;
+        }
+
+        .romantic-btn:active {
+            transform: scale(0.97);
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #8c7ae6;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas class="bg-canvas" id="bg-canvas"></canvas>
+
+    <div class="main-container">
+        <div class="header-emoji">💖</div>
+        <h1>عالمنا الخاص يا رحومة</h1>
+        <div class="subtitle">من اللحظة اللي كلمتك فيها لحد هذه الثانية ✨</div>
+
+        <!-- عداد الوقت الحي -->
+        <div class="counter-card">
+            <div class="counter-title">الوقت من يوم الجمعة الساعة 7:19 🥰</div>
+            <div class="time-grid">
+                <div class="time-box">
+                    <div class="time-num" id="days-val">0</div>
+                    <div class="time-label">يوم</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="hours-val">0</div>
+                    <div class="time-label">ساعة</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="mins-val">0</div>
+                    <div class="time-label">دقيقة</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="secs-val">0</div>
+                    <div class="time-label">ثانية</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صندوق أسباب حبي ليكِ -->
+        <div class="reason-box" id="reason-text">
+            دوسي على الزرار تحت عشان تعرفي حاجة جديدة من جوا قلبي ليكِ ❤️
+        </div>
+
+        <button class="romantic-btn" onclick="nextReason()">اعرفي سبب جديد 💌</button>
+        
+        <div class="footer-note">مستنيكِ في الشات تقوليل حاجة حلوة 😉✨</div>
+    </div>
+
+    <script>
+        // خلفية نجوم وقلوب هادئة جداً
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+
+        for (let i = 0; i < 40; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2.5 + 0.8,
+                speed: Math.random() * 0.3 + 0.1,
+                opacity: Math.random() * 0.7 + 0.2
+            });
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                ctx.fillStyle = `rgba(255, 182, 193, ${s.opacity})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fill();
+                s.y -= s.speed;
+                if (s.y < 0) s.y = canvas.height;
+            });
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+
+        // تاريخ يوم الجمعة الساعة 7:19 (تحديد التوقيت بدقة بالمللي ثانية بحيث يظل شغال حتى لو خرجت ورجعت)
+        // تاريخ يوم الجمعة الموافق 6 مارس 2026 (أو أول جمعة قريبة تم تحديدها)
+        const startDate = new Date('2026-03-06T19:19:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('days-val').innerText = days;
+                document.getElementById('hours-val').innerText = hours;
+                document.getElementById('mins-val').innerText = mins;
+                document.getElementById('secs-val').innerText = secs;
+            }
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // الأسباب الرومانسية
+        const reasons = [
+            "بحب إزاي ضحكتك قادرة تفرّحني حتى لو يومي كان أصعب يوم في الدنيا ❤️",
+            "وجودك في طريقي هو أحلى حاجة حصلت لي بجد، وبحمد ربنا عليكي كل يوم ✨",
+            "لما بكون قاعد بكلمك في الشات، بنسى كل تعب الشغل واليوم وألاقي نفسي ببتسم لوحدي 🤭",
+            "بحب تفاصيلك الصغيرة وطريقتك في الكلام اللي بتخليني أعشقك زيادة كل يوم 🥰",
+            "أنتِ مش بس أغلى إنسانة، أنتِ البيت والراحة بالنسبة لي في كل وقت 🏡❤️",
+            "مهما مر بينا أوقات، غلاوتك عندي بتزيد ومش ممكن أبداً تقل يا رحومتي ✨"
+        ];
+
+        let rIndex = 0;
+        function nextReason() {
+            const box = document.getElementById('reason-text');
+            box.style.opacity = 0;
+            setTimeout(() => {
+                box.innerText = reasons[rIndex];
+                box.style.opacity = 1;
+                rIndex = (rIndex + 1) % reasons.length;
+            }, 250);
+        }
+    </script>
+</body>
+</html>
